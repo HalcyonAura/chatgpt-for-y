@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{%block content%}
+
+    <header>
+        <h1>{% block header %}Ask ChatGPT{% endblock %}</h1>
+    </header>
+    
+    <form action="{{ url_for('index')}}" method="post">
+        <label for="question">Ask me anything:</label>
+        <input type="text" id="question" name="question">
+        <button type="submit">Send</button>
+    </form>
+
+    {% if question %}
+    <h2> {{ question }}</h2>
+    </ul>
+{% else %}
+    <p>No answers yet.</p>
+{% endif %}
+{%endblock%}
