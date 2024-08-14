@@ -1,20 +1,28 @@
-{% extends "base.html" %}
-{%block content%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}ChatGPT for X{% endblock %}</title>
+</head>
+<body>
 
     <header>
         <h1>{% block header %}Ask ChatGPT{% endblock %}</h1>
     </header>
-    
+    {% if message %}
+
+    {% for msg in past_messages %}
+      <h2>{{ msg }}</h2>
+    {% endfor %}
+    {% else %}
+       <p>No answers yet.</p>
+    {% endif %}
+
     <form action="{{ url_for('index')}}" method="post">
-        <label for="question">Ask me anything:</label>
-        <input type="text" id="question" name="question">
+        <label for="message">Ask me anything:</label>
+        <input type="text" id="message" name="message">
         <button type="submit">Send</button>
     </form>
-
-    {% if question %}
-    <h2> {{ question }}</h2>
-    </ul>
-{% else %}
-    <p>No answers yet.</p>
-{% endif %}
-{%endblock%}
+    <footer>
+    </footer>
+</body>
+</html>
