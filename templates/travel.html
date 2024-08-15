@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Information Form</title>
+</head>
+<body>
+    <h1>Travel Information Form</h1>
+    
+    <form action="{{ url_for('travel')}}" method="post">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br><br>
+        
+        <label for="options">Select Information:</label>
+        <select id="options" name="options[]" multiple>
+            <option value="food">Food</option>
+            <option value="currency">Currency</option>
+            <option value="weather">Weather</option>
+            <option value="visas">Travel Visas</option>
+        </select><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+    {{ past_messages }}
+</body>
+</html>

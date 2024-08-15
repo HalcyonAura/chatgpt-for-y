@@ -4,14 +4,36 @@
     <title>{% block title %}ChatGPT for X{% endblock %}</title>
 </head>
 <body>
-
-    <header>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 3vh 5vw;
+    }
+    .role .timestamp {
+        margin: 2px;
+    }
+</style>
         <h1>{% block header %}Ask ChatGPT{% endblock %}</h1>
     </header>
     {% if message %}
 
     {% for msg in past_messages %}
-      <h2>{{ msg }}</h2>
+    <div style="margin-left: 5%; margin-right: 5%">
+        {% if msg.name == "User" %}
+        <div style="text-align: right; width: 66.67%; margin: auto;">
+            <h2 class="role">{{ msg.name }}</h2>
+            <p class="response" style="background-color: lightblue; padding: 10px; border-radius: 10px; display: inline-block;">{{msg.message}}</p>
+            <p class="timestamp"> {{msg.day}} {{msg.time}}</p>
+        </div>
+        {% else %}
+        <div style="text-align: left; width: 66.67%; margin: auto;">
+            <h2 class="role">{{ msg.name }}</h2>
+        <p class="response" style="background-color: lightgreen; padding: 10px; border-radius: 10px; display: inline-block;">{{msg.message}}</p>
+            <p class="timestamp"> {{msg.day}} {{msg.time}}</p>
+        </div>
+        {% endif %}
+    </div>
     {% endfor %}
     {% else %}
        <p>No answers yet.</p>
